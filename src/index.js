@@ -7,13 +7,14 @@ const app = new Hono()
 app.post('/generate-alt-text', async (c) => {
   const body = await c.req.json()
 
-  // use user-provided provider key
+  // use user-provided key
   const openai = createOpenAI({
     apiKey: body.key
   })
 
   const result = await generateText({
-    model: openai('gpt-4.1'),
+    // most efficient and affordable model as of 08/2025
+    model: openai('gpt-5-nano'),
     messages: [
       {
         role: 'user',
