@@ -46,12 +46,13 @@ app.post('/generate-alt-text', zValidator('json', schema), async (c) => {
 
     const prettyResult = {
       altText: result.steps[0].content[1].text,
-      imageURL: bodyImageURL
+      imageURL: body.ImageURL
     }
 
     return c.json(prettyResult)
   } catch(error) {
     // handle API access errors (e.g. quota exceeded)
+    console.log(error)
     return c.json(error, 429)
   }
 })
